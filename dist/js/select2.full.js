@@ -1312,7 +1312,10 @@ S2.define('select2/results',[
             data: data
           });
         } else {
-          self.trigger('close', {});
+          self.trigger('close', {
+            originalEvent: evt,
+            data: data
+          });
         }
 
         return;
