@@ -202,6 +202,17 @@ define([
       $offsetParent[0].isConnected
       ) {
       parentOffset = $offsetParent.offset();
+
+      // Check if parent is scrollable
+      var scrollable = /(auto|scroll)/.test(
+        $offsetParent.css('overflow') +
+        $offsetParent.css('overflow-y') +
+        $offsetParent.css('overflow-x')
+      );
+      if (scrollable) {
+        parentOffset.top -= $offsetParent[0].scrollTop;
+        parentOffset.left -= $offsetParent[0].scrollLeft;
+      }
     }
 
     css.top -= parentOffset.top;
